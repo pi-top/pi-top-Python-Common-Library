@@ -1,0 +1,30 @@
+Source: python3-pitop.utils
+Section: python
+Priority: optional
+Maintainer: pi-top <deb-maintainers@pi-top.com>
+Build-Depends:
+ debhelper-compat (= 12),
+ dh-sequence-python3,
+# Required by pybuild
+ dh-python,
+ python3-all,
+ python3-setuptools,
+Standards-Version: 4.5.0
+Homepage: https://pi-top.com
+
+Package: python3-pitop.utils
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ alsa-utils,
+ coreutils (>= 8),
+ i2c-tools,
+# python3-isc-dhcp-leases,
+# python3-netifaces,
+# python3-systemd,
+ raspi-config,
+Description: pi-top Python 3 Library - Utils
+ Collection of common classes and modules used by pi-top software
+ .
+ This is the main Python library part of the package.

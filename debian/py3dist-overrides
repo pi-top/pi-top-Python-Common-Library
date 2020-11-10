@@ -1,0 +1,3 @@
+isc_dhcp_leases python3-isc-dhcp-leases
+netifaces python3-netifaces
+python_systemd python3-systemd
