@@ -1,5 +1,6 @@
 pitop.utils (1:0.1.0) buster; urgency=medium
 
   * Initial release of package
+  * Replaces python3-pt-common
 
  -- Jorge Capona <jorge@pi-top.com>  Tue, 10 Nov 2020 09:28:46 -0300
