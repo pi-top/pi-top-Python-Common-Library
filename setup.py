@@ -64,7 +64,7 @@ project = "pi-top Python Utils"
 __author__ = "pi-top"
 __author_email__ = "deb-maintainers@pi-top.com"
 
-__url__ = "https://github.com/pi-top/pi-top-Python-SDK"
+__url__ = "https://github.com/pi-top/pitop.utils"
 __platforms__ = "ALL"
 
 # https://pypi.org/classifiers/
@@ -88,7 +88,6 @@ __classifiers__ = [
 __keywords__ = [
     "pi-top",
     "raspberrypi",
-    "gpio",
 ]
 
 __requires__ = [
