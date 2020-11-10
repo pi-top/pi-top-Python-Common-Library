@@ -1,8 +1,8 @@
-from pitop.core.command_runner import run_command
-from pitop.core.current_session_info import get_current_user
-from pitop.core.logger import PTLogger
-from pitop.core.file_ops import sed_inplace, create_temp_file
-from pitop.core.formatting import is_line_commented, get_uncommented_line
+from pitop.utils.command_runner import run_command
+from pitop.utils.current_session_info import get_current_user
+from pitop.utils.logger import PTLogger
+from pitop.utils.file_ops import sed_inplace, create_temp_file
+from pitop.utils.formatting import is_line_commented, get_uncommented_line
 from os import devnull, path
 from re import compile
 from shutil import copy

@@ -5,9 +5,9 @@ from os import path
 from fractions import Fraction
 from isc_dhcp_leases import IscDhcpLeases
 
-from pitop.core.formatting import bytes2human, remove_prefix
-from pitop.core.logger import PTLogger
-from pitop.core.command_runner import run_command
+from pitop.utils.formatting import bytes2human, remove_prefix
+from pitop.utils.logger import PTLogger
+from pitop.utils.command_runner import run_command
 
 
 _, _, _, _, machine = uname()

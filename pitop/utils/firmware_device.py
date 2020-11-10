@@ -1,5 +1,5 @@
-from pitop.core.i2c_device import I2CDevice
-from pitop.core.common_ids import FirmwareDeviceID
+from pitop.utils.i2c_device import I2CDevice
+from pitop.utils.common_ids import FirmwareDeviceID
 
 from math import ceil, floor
 from datetime import datetime

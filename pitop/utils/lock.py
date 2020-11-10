@@ -4,7 +4,7 @@ from os.path import exists
 from stat import S_IWUSR, S_IWGRP, S_IWOTH
 from threading import Lock
 
-from pitop.core.logger import PTLogger
+from pitop.utils.logger import PTLogger
 
 
 class PTLock(object):

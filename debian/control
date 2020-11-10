@@ -1,4 +1,4 @@
-Source: python3-pitop.utils
+Source: pitop.utils
 Section: python
 Priority: optional
 Maintainer: pi-top <deb-maintainers@pi-top.com>
@@ -20,9 +20,6 @@ Depends:
  alsa-utils,
  coreutils (>= 8),
  i2c-tools,
-# python3-isc-dhcp-leases,
-# python3-netifaces,
-# python3-systemd,
  raspi-config,
 Description: pi-top Python 3 Library - Utils
  Collection of common classes and modules used by pi-top software

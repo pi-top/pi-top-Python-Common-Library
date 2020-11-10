@@ -2,8 +2,8 @@ from os import environ
 from shlex import split
 from subprocess import run, Popen, CalledProcessError, TimeoutExpired
 
-from pitop.core.logger import PTLogger
-from pitop.core.current_session_info import get_first_display
+from pitop.utils.logger import PTLogger
+from pitop.utils.current_session_info import get_first_display
 
 
 def __get_env():
