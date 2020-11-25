@@ -1,5 +1,5 @@
 from math import ceil
-from pitoputils.logger import PTLogger
+from pitopcommon.logger import PTLogger
 
 
 def split_into_bytes(data: int, no_of_bytes: int = -1, little_endian: bool = False, signed: bool = False):

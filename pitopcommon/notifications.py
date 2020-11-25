@@ -1,7 +1,7 @@
 from enum import Enum, auto
 
-from pitoputils.logger import PTLogger
-from pitoputils.command_runner import run_command
+from pitopcommon.logger import PTLogger
+from pitopcommon.command_runner import run_command
 
 
 class NotificationAction:

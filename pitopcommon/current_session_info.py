@@ -1,6 +1,6 @@
 from os import listdir, environ
 
-from pitoputils.logger import PTLogger
+from pitopcommon.logger import PTLogger
 
 
 def get_current_user():
@@ -45,7 +45,7 @@ def get_user_using_display(display_no):
             Returns:
                     user (str): String representing the user
     '''
-    from pitoputils.command_runner import run_command
+    from pitopcommon.command_runner import run_command
     user = None
     for line in run_command("who", timeout=1).split("\n"):
         if "(%s)" % display_no in line:

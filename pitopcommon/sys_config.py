@@ -1,8 +1,8 @@
-from pitoputils.command_runner import run_command
-from pitoputils.current_session_info import get_current_user
-from pitoputils.logger import PTLogger
-from pitoputils.file_ops import sed_inplace, create_temp_file
-from pitoputils.formatting import is_line_commented, get_uncommented_line
+from pitopcommon.command_runner import run_command
+from pitopcommon.current_session_info import get_current_user
+from pitopcommon.logger import PTLogger
+from pitopcommon.file_ops import sed_inplace, create_temp_file
+from pitopcommon.formatting import is_line_commented, get_uncommented_line
 from os import devnull, path
 from re import compile
 from shutil import copy

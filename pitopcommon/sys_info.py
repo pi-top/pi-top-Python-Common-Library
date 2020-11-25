@@ -5,8 +5,8 @@ from os import path
 from fractions import Fraction
 from isc_dhcp_leases import IscDhcpLeases
 
-from pitoputils.logger import PTLogger
-from pitoputils.command_runner import run_command
+from pitopcommon.logger import PTLogger
+from pitopcommon.command_runner import run_command
 
 
 _, _, _, _, machine = uname()

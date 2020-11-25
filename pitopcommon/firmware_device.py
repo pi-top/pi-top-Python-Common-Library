@@ -1,5 +1,5 @@
-from pitoputils.i2c_device import I2CDevice
-from pitoputils.common_ids import FirmwareDeviceID
+from pitopcommon.i2c_device import I2CDevice
+from pitopcommon.common_ids import FirmwareDeviceID
 
 from math import ceil
 from datetime import datetime

@@ -1,11 +1,11 @@
-from pitoputils.lock import PTLock
+from pitopcommon.lock import PTLock
 from unittest import TestCase, skip
 from sys import modules
 from unittest.mock import Mock, mock_open, patch
 from threading import Thread
 
 mock_os = modules["os"] = Mock()
-mock_logger = modules["pitoputils.logger"] = Mock()
+mock_logger = modules["pitopcommon.logger"] = Mock()
 
 
 @skip
@@ -22,13 +22,13 @@ class PTLockTestCase(TestCase):
         _ = PTLock(self.__dummy_lock_id)
         m.assert_called_with(self.lock_file_path, 'w')
 
-    @patch('pitoputils.lock.exists', return_value=True)
+    @patch('pitopcommon.lock.exists', return_value=True)
     def test_chmod_not_called_if_file_exist(self, exists_mock):
         _ = PTLock(self.__dummy_lock_id)
         exists_mock.assert_called_once_with(self.lock_file_path)
         mock_os.chmod.assert_not_called()
 
-    @patch('pitoputils.lock.exists', return_value=False)
+    @patch('pitopcommon.lock.exists', return_value=False)
     def test_chmod_is_called_if_file_doesnt_exist(self, exists_mock):
         _ = PTLock(self.__dummy_lock_id)
         exists_mock.assert_called_once_with(self.lock_file_path)
