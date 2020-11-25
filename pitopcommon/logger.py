@@ -4,7 +4,7 @@ try:
     from systemd.journal import JournalHandler
 
     systemd_journal_available = True
-except ModuleNotFoundError as e:
+except ModuleNotFoundError:
     systemd_journal_available = False
 from datetime import datetime
 

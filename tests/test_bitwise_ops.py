@@ -1,10 +1,10 @@
-import pitop.utils.bitwise_ops as bitwise
+import pitoputils.bitwise_ops as bitwise
 from unittest import TestCase
 from parameterized import parameterized
 from sys import modules
 from unittest.mock import Mock
 
-mock_logger = modules["pitop.utils.logger"] = Mock()
+mock_logger = modules["pitoputils.logger"] = Mock()
 
 
 class BitwiseOpsTestCase(TestCase):

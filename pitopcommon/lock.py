@@ -4,7 +4,7 @@ from os.path import exists
 from stat import S_IWUSR, S_IWGRP, S_IWOTH
 from threading import Lock
 
-from pitop.utils.logger import PTLogger
+from pitoputils.logger import PTLogger
 
 
 class PTLock(object):
@@ -28,12 +28,10 @@ class PTLock(object):
         Block until lock can be acquired
         """
         if self._thread_lock.locked():
-            PTLogger.debug(
-                "Attempting to acquire thread lock, which is currently already acquired.".format(self.path))
+            PTLogger.debug("Attempting to acquire thread lock, which is currently already acquired.")
 
         if self.is_locked():
-            PTLogger.debug(
-                "Attempting to acquire lock file at {} which is currently already globally acquired".format(self.path))
+            PTLogger.debug(f"Attempting to acquire lock file ({self.path}), which is currently already globally acquired.")
 
         PTLogger.debug("Acquiring thread lock")
         self._thread_lock.acquire()
@@ -46,12 +44,10 @@ class PTLock(object):
         Attempt to release lock
         """
         if not self._thread_lock.locked():
-            PTLogger.debug(
-                "Attempting to release thread lock, which is not currently already acquired.".format(self.path))
+            PTLogger.debug("Attempting to release thread lock, which is currently already acquired.")
 
         if not self.is_locked():
-            PTLogger.debug(
-                "Attempting to release lock file, which is not currently already globally acquired.".format(self.path))
+            PTLogger.debug(f"Attempting to release lock file ({self.path}), which is currently already globally acquired.")
 
         PTLogger.debug("Releasing thread lock")
         self._thread_lock.release()

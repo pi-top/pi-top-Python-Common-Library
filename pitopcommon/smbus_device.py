@@ -3,8 +3,8 @@ Wrapper for smbus for when standard I2C protocol is required, in contrast to the
 less-than-standard I2C used on older devices.
 """
 
-from pitop.utils.logger import PTLogger
-from pitop.utils.bitwise_ops import get_bits, split_into_bytes, join_bytes
+from pitoputils.logger import PTLogger
+from pitoputils.bitwise_ops import get_bits, split_into_bytes, join_bytes
 from smbus2 import SMBus
 
 

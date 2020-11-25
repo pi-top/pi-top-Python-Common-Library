@@ -1,4 +1,4 @@
-pitop.utils (1:0.1.0) buster; urgency=medium
+py-pitop-common (1:0.1.0) UNRELEASED; urgency=medium
 
   * Initial release of package
   * Replaces python3-pt-common

@@ -1,7 +1,7 @@
-from pitop.utils.i2c_device import I2CDevice
-from pitop.utils.common_ids import FirmwareDeviceID
+from pitoputils.i2c_device import I2CDevice
+from pitoputils.common_ids import FirmwareDeviceID
 
-from math import ceil, floor
+from math import ceil
 from datetime import datetime
 
 
@@ -72,7 +72,7 @@ class FirmwareDevice(object):
 
         try:
             self._i2c_device.connect()
-        except Exception as e:
+        except Exception:
             raise ConnectionError("Device is not plugged. Skipping.")
 
         if self.part_name != self.get_part_name():

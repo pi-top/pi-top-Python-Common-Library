@@ -1,8 +1,7 @@
-from subprocess import getoutput
 from enum import Enum, auto
 
-from pitop.utils.logger import PTLogger
-from pitop.utils.command_runner import run_command
+from pitoputils.logger import PTLogger
+from pitoputils.command_runner import run_command
 
 
 class NotificationAction:

@@ -5,9 +5,8 @@ from os import path
 from fractions import Fraction
 from isc_dhcp_leases import IscDhcpLeases
 
-from pitop.utils.formatting import bytes2human, remove_prefix
-from pitop.utils.logger import PTLogger
-from pitop.utils.command_runner import run_command
+from pitoputils.logger import PTLogger
+from pitoputils.command_runner import run_command
 
 
 _, _, _, _, machine = uname()
@@ -27,7 +26,7 @@ def get_debian_version():
                     '"', "").replace("\n", "")
                 try:
                     version = int(version_str)
-                except ValueError as ex:
+                except ValueError:
                     version = None
                 break
 
@@ -70,7 +69,7 @@ def get_battery_capacity():
         response = str(e.output.decode("utf-8"))
         if "Error" not in response:
             response = "Error: " + str(e.output.decode("utf-8"))
-    except:
+    except Exception:
         response = "Unknown Error"
 
     return response
@@ -88,7 +87,7 @@ def get_battery_charging_state():
         response = str(e.output.decode("utf-8"))
         if "Error" not in response:
             response = "Error: " + str(e.output.decode("utf-8"))
-    except:
+    except Exception:
         response = "Unknown Error"
 
     return response
@@ -111,17 +110,17 @@ def get_internal_ip(iface="wlan0"):
 
     try:
         addrs = netifaces.ifaddresses(iface)
-    except:
+    except Exception:
         return "Addresses Not Found"
 
     try:
         inet_addrs = addrs[netifaces.AF_INET][0]
-    except:
+    except Exception:
         return "Internet Addresses Not Found"
 
     try:
         internal_ip = inet_addrs['addr']
-    except:
+    except Exception:
         return "IP Not Found"
 
     return internal_ip
@@ -189,7 +188,7 @@ def get_address_for_ptusb_connected_device():
                 PTLogger.debug(
                     "Leased IP address {} is connected.".format(lease.ip))
                 return lease.ip
-            except Exception as e:
+            except Exception:
                 PTLogger.debug(
                     "Leased IP address {} is not connected.".format(lease.ip))
                 continue

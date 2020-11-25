@@ -2,8 +2,8 @@ from os import environ
 from shlex import split
 from subprocess import run, Popen, CalledProcessError, TimeoutExpired
 
-from pitop.utils.logger import PTLogger
-from pitop.utils.current_session_info import get_first_display
+from pitoputils.logger import PTLogger
+from pitoputils.current_session_info import get_first_display
 
 
 def __get_env():
@@ -39,13 +39,31 @@ def run_command(command_str: str, timeout: int, check: bool = True, capture_outp
             resp_stderr = str(resp.stderr, 'utf8')
 
             PTLogger.debug(
-                f"run_command(command_str='{command_str}', timeout={timeout}, check='{check}', capture_output='{capture_output}') stdout:\n{resp_stdout}")
+                f"run_command("
+                f"command_str='{command_str}', "
+                f"timeout={timeout}, "
+                f"check='{check}', "
+                f"capture_output='{capture_output}'"
+                f") stdout:\n{resp_stdout}"
+            )
             PTLogger.debug(
-                f"run_command(command_str='{command_str}', timeout={timeout}, check='{check}', capture_output='{capture_output}') stderr:\n{resp_stderr}")
+                f"run_command("
+                f"command_str='{command_str}', "
+                f"timeout={timeout}, "
+                f"check='{check}', "
+                f"capture_output='{capture_output}'"
+                f") stderr:\n{resp_stderr}"
+            )
 
         if not check:
             PTLogger.debug(
-                f"run_command(command_str='{command_str}', timeout={timeout}, check='{check}', capture_output='{capture_output}') exit code: {resp.returncode}")
+                f"run_command("
+                f"command_str='{command_str}', "
+                f"timeout={timeout}, "
+                f"check='{check}', "
+                f"capture_output='{capture_output}'"
+                f") exit code: {resp.returncode}"
+            )
 
     except (CalledProcessError, TimeoutExpired) as e:
         PTLogger.error(str(e))

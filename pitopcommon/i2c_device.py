@@ -1,6 +1,6 @@
-from pitop.utils.logger import PTLogger
-from pitop.utils.lock import PTLock
-from pitop.utils.bitwise_ops import get_bits, split_into_bytes, join_bytes
+from pitoputils.logger import PTLogger
+from pitoputils.lock import PTLock
+from pitoputils.bitwise_ops import get_bits, split_into_bytes, join_bytes
 
 from io import open as iopen
 from fcntl import ioctl
