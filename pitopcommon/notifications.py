@@ -46,6 +46,8 @@ def send_notification(
         urgency_level: NotificationUrgencyLevel = None,
         capture_notification_id: bool = True) -> str:
 
+    # TODO: check that `pt-notify-send` is available, as it's not a hard dependency of the package
+
     cmd = "/usr/bin/pt-notify-send "
     cmd += "--print-id "
     cmd += "--expire-time=" + str(timeout) + " "
