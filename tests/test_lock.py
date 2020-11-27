@@ -1,4 +1,3 @@
-from pitopcommon.lock import PTLock
 from unittest import TestCase, skip
 from sys import modules
 from unittest.mock import Mock, mock_open, patch
@@ -6,6 +5,9 @@ from threading import Thread
 
 mock_os = modules["os"] = Mock()
 mock_logger = modules["pitopcommon.logger"] = Mock()
+
+# import after applying mocks
+from pitopcommon.lock import PTLock  # noqa: E402
 
 
 @skip

@@ -1,4 +1,3 @@
-from pitopcommon.i2c_device import I2CDevice
 from unittest import TestCase, skip
 from sys import modules
 from unittest.mock import Mock
@@ -9,6 +8,9 @@ mock_logger = modules["pitopcommon.logger"] = Mock()
 mock_lock = modules["pitopcommon.lock"] = Mock()
 mock_fcntl = modules["fcntl"] = Mock()
 mock_time = modules["time"] = Mock()
+
+# import after applying mocks
+from pitopcommon.i2c_device import I2CDevice  # noqa: E402
 
 
 @skip

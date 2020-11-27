@@ -1,6 +1,3 @@
-from pitopcommon.common_ids import FirmwareDeviceID
-from pitopcommon.firmware_device import FirmwareDevice
-from pitopcommon.firmware_device import PTInvalidFirmwareDeviceException
 from unittest import TestCase
 from sys import modules
 from unittest.mock import Mock
@@ -8,6 +5,13 @@ from parameterized import parameterized
 
 mock_logger = modules["pitopcommon.logger"] = Mock()
 mock_i2c_device = modules["pitopcommon.i2c_device"] = Mock()
+
+# import after applying mocks
+from pitopcommon.common_ids import FirmwareDeviceID  # noqa: E402
+from pitopcommon.firmware_device import FirmwareDevice  # noqa: E402
+from pitopcommon.firmware_device import (  # noqa: E402
+    PTInvalidFirmwareDeviceException
+)
 
 
 class FirmwareDeviceTestCase(TestCase):
