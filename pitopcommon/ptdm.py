@@ -254,7 +254,7 @@ class PTDMRequestClient:
 
         try:
             self.__zmq_socket.connect("tcp://127.0.0.1:3782")
-            PTLogger.info("pt-device-manager request client is ready")
+            PTLogger.debug("pt-device-manager request client is ready")
 
         except zmq.error.ZMQError as e:
             PTLogger.error("Error starting the request client: " + str(e))
@@ -317,7 +317,7 @@ class PTDMSubscribeClient:
 
         try:
             self.__zmq_socket.connect("tcp://127.0.0.1:3781")
-            PTLogger.info("pt-device-manager subscribe client is ready")
+            PTLogger.debug("pt-device-manager subscribe client is ready")
 
         except zmq.error.ZMQError as e:
             PTLogger.error("Error starting the subscribe client: " + str(e))
