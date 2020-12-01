@@ -54,45 +54,6 @@ def get_network_strength(iface):
     return str(strength) + "%"
 
 
-def get_battery_capacity():
-    try:
-        response = (
-            str(
-                subprocess.check_output(
-                    ["pt-battery", "-c"], stderr=subprocess.STDOUT
-                ).decode("utf-8")
-            ).strip()
-        )
-    except FileNotFoundError:
-        response = "pt-battery Error"
-    except subprocess.CalledProcessError as e:
-        response = str(e.output.decode("utf-8"))
-        if "Error" not in response:
-            response = "Error: " + str(e.output.decode("utf-8"))
-    except Exception:
-        response = "Unknown Error"
-
-    return response
-
-
-def get_battery_charging_state():
-    try:
-        charging_state = subprocess.check_output(
-            ["pt-battery", "-s"], stderr=subprocess.STDOUT
-        ).decode("utf-8")
-        response = charging_state
-    except FileNotFoundError:
-        response = "pt-battery Error"
-    except subprocess.CalledProcessError as e:
-        response = str(e.output.decode("utf-8"))
-        if "Error" not in response:
-            response = "Error: " + str(e.output.decode("utf-8"))
-    except Exception:
-        response = "Unknown Error"
-
-    return response
-
-
 def get_wifi_network_ssid():
     try:
         network_id = str(
@@ -156,14 +117,6 @@ def get_pt_further_link_enabled_state():
     vnc_enabled_state = get_systemd_enabled_state(
         "pt-further-link.service")
     return vnc_enabled_state
-
-
-def get_host_device_version():
-    try:
-        with open("/etc/pi-top/pt-device-manager/device_version", "r") as device_version_file:
-            return device_version_file.readline().strip()
-    except IOError:
-        return "Error getting valid pi-top version from device version file"
 
 
 def interface_is_up(interface_name):
