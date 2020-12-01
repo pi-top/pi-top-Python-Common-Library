@@ -350,7 +350,8 @@ class PTDMSubscribeClient:
                 if id in self.__message_dict:
                     message.validate_parameters([])
                     function_to_run = self.__message_dict[id]
-                    function_to_run()
+                    if function_to_run is not None:
+                        function_to_run()
 
     def initialise(self, message_dict):
         self.__message_dict = message_dict
