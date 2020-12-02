@@ -2,6 +2,7 @@ from pitopcommon.logger import PTLogger
 from pitopcommon.type_helper import TypeHelper
 from threading import Thread
 from time import sleep
+from inspect import signature
 from traceback import format_exc
 import zmq
 from atexit import (
@@ -303,7 +304,7 @@ class PTDMSubscribeClient:
         self.__thread = Thread(target=self.__thread_method)
         self.__thread.setDaemon(True)
 
-        self.__message_dict = None
+        self.__callback_funcs = None
 
         self.__zmq_context = None
         self.__zmq_socket = None
@@ -347,14 +348,28 @@ class PTDMSubscribeClient:
                 message = Message.from_string(message_string)
 
                 id = message.message_id()
-                if id in self.__message_dict:
-                    message.validate_parameters([])
-                    function_to_run = self.__message_dict[id]
-                    if function_to_run is not None:
-                        function_to_run()
+                if id in self.__callback_funcs:
+                    message.validate_parameters(list())
+                    self.invoke_callback_func_if_exists(
+                        self.__callback_funcs[id],
+                        message.parameters
+                    )
 
-    def initialise(self, message_dict):
-        self.__message_dict = message_dict
+    def invoke_callback_func_if_exists(func, params=list()):
+        if func is None:
+            return
+
+        func_arg_no = len(signature(func).parameters)
+        if func_arg_no > 1:
+            raise ValueError("Invalid callback function - it should receive at most one argument.")
+
+        if params == list() or func_arg_no == 0:
+            func()
+        else:
+            func(params)
+
+    def initialise(self, callback_funcs):
+        self.__callback_funcs = callback_funcs
 
     def start_listening(self):
         if not self.__connect_to_socket():
