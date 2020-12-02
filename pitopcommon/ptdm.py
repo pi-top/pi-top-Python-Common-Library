@@ -14,6 +14,7 @@ from atexit import (
 # Messages sent to/from pt-device-manager clients
 class Message:
     __message_names = dict()
+    __param_types = dict()
 
     # Requests
     REQ_PING = 110
@@ -51,6 +52,24 @@ class Message:
     __message_names[REQ_SET_SCREEN_BACKLIGHT_STATE] = "REQ_SET_SCREEN_BACKLIGHT_STATE"
     __message_names[REQ_GET_OLED_CONTROL] = "REQ_GET_OLED_CONTROL"
     __message_names[REQ_SET_OLED_CONTROL] = "REQ_SET_OLED_CONTROL"
+
+    __param_types[REQ_PING] = list()
+    __param_types[REQ_GET_DEVICE_ID] = list()
+    __param_types[REQ_GET_BRIGHTNESS] = list()
+    __param_types[REQ_SET_BRIGHTNESS] = list()
+    __param_types[REQ_INCREMENT_BRIGHTNESS] = list()
+    __param_types[REQ_DECREMENT_BRIGHTNESS] = list()
+    __param_types[REQ_BLANK_SCREEN] = list()
+    __param_types[REQ_UNBLANK_SCREEN] = list()
+    __param_types[REQ_GET_BATTERY_STATE] = list()
+    __param_types[REQ_GET_PERIPHERAL_ENABLED] = list()
+    __param_types[REQ_GET_SCREEN_BLANKING_TIMEOUT] = list()
+    __param_types[REQ_SET_SCREEN_BLANKING_TIMEOUT] = list()
+    __param_types[REQ_GET_LID_OPEN_STATE] = list()
+    __param_types[REQ_GET_SCREEN_BACKLIGHT_STATE] = list()
+    __param_types[REQ_SET_SCREEN_BACKLIGHT_STATE] = list()
+    __param_types[REQ_GET_OLED_CONTROL] = list()
+    __param_types[REQ_SET_OLED_CONTROL] = list()
 
     # Responses
     RSP_ERR_SERVER = 201
@@ -94,6 +113,27 @@ class Message:
     __message_names[RSP_SET_SCREEN_BACKLIGHT_STATE] = "RSP_SET_SCREEN_BACKLIGHT_STATE"
     __message_names[RSP_GET_OLED_CONTROL] = "RSP_GET_OLED_CONTROL"
     __message_names[RSP_SET_OLED_CONTROL] = "RSP_SET_OLED_CONTROL"
+
+    __param_types[RSP_ERR_SERVER] = list()
+    __param_types[RSP_ERR_MALFORMED] = list()
+    __param_types[RSP_ERR_UNSUPPORTED] = list()
+    __param_types[RSP_PING] = list()
+    __param_types[RSP_GET_DEVICE_ID] = list(int)
+    __param_types[RSP_GET_BRIGHTNESS] = list(int)
+    __param_types[RSP_SET_BRIGHTNESS] = list()
+    __param_types[RSP_INCREMENT_BRIGHTNESS] = list()
+    __param_types[RSP_DECREMENT_BRIGHTNESS] = list()
+    __param_types[RSP_BLANK_SCREEN] = list()
+    __param_types[RSP_UNBLANK_SCREEN] = list()
+    __param_types[RSP_GET_BATTERY_STATE] = list(int, int, int, int)
+    __param_types[RSP_GET_PERIPHERAL_ENABLED] = list(int)
+    __param_types[RSP_GET_SCREEN_BLANKING_TIMEOUT] = list(int)
+    __param_types[RSP_SET_SCREEN_BLANKING_TIMEOUT] = list()
+    __param_types[RSP_GET_LID_OPEN_STATE] = list()
+    __param_types[RSP_GET_SCREEN_BACKLIGHT_STATE] = list()
+    __param_types[RSP_SET_SCREEN_BACKLIGHT_STATE] = list()
+    __param_types[RSP_GET_OLED_CONTROL] = list(int)
+    __param_types[RSP_SET_OLED_CONTROL] = list()
 
     # Broadcast/published messages
     PUB_BRIGHTNESS_CHANGED = 300
@@ -158,6 +198,37 @@ class Message:
     __message_names[PUB_EXTERNAL_DISPLAY_CONNECTED] = "PUB_EXTERNAL_DISPLAY_CONNECTED"
     __message_names[PUB_EXTERNAL_DISPLAY_DISCONNECTED] = "PUB_EXTERNAL_DISPLAY_DISCONNECTED"
 
+    __param_types[PUB_BRIGHTNESS_CHANGED] = list(int)
+    __param_types[PUB_PERIPHERAL_CONNECTED] = list(int)
+    __param_types[PUB_PERIPHERAL_DISCONNECTED] = list(int)
+    __param_types[PUB_SHUTDOWN_REQUESTED] = list()
+    __param_types[PUB_REBOOT_REQUIRED] = list()
+    __param_types[PUB_BATTERY_STATE_CHANGED] = list(int, int, int, int)
+    __param_types[PUB_SCREEN_BLANKED] = list()
+    __param_types[PUB_SCREEN_UNBLANKED] = list()
+    __param_types[PUB_LOW_BATTERY_WARNING] = list()
+    __param_types[PUB_CRITICAL_BATTERY_WARNING] = list()
+    __param_types[PUB_LID_CLOSED] = list()
+    __param_types[PUB_LID_OPENED] = list()
+    __param_types[PUB_UNSUPPORTED_HARDWARE] = list()
+    __param_types[PUB_V3_BUTTON_UP_PRESSED] = list()
+    __param_types[PUB_V3_BUTTON_UP_RELEASED] = list()
+    __param_types[PUB_V3_BUTTON_DOWN_PRESSED] = list()
+    __param_types[PUB_V3_BUTTON_DOWN_RELEASED] = list()
+    __param_types[PUB_V3_BUTTON_SELECT_PRESSED] = list()
+    __param_types[PUB_V3_BUTTON_SELECT_RELEASED] = list()
+    __param_types[PUB_V3_BUTTON_CANCEL_PRESSED] = list()
+    __param_types[PUB_V3_BUTTON_CANCEL_RELEASED] = list()
+    __param_types[PUB_KEYBOARD_DOCKED] = list()
+    __param_types[PUB_KEYBOARD_UNDOCKED] = list()
+    __param_types[PUB_KEYBOARD_CONNECTED] = list()
+    __param_types[PUB_FAILED_KEYBOARD_CONNECT] = list()
+    __param_types[PUB_OLED_CONTROL_CHANGED] = list()
+    __param_types[PUB_NATIVE_DISPLAY_CONNECTED] = list()
+    __param_types[PUB_NATIVE_DISPLAY_DISCONNECTED] = list()
+    __param_types[PUB_EXTERNAL_DISPLAY_CONNECTED] = list()
+    __param_types[PUB_EXTERNAL_DISPLAY_DISCONNECTED] = list()
+
     def _parse(self, message_string):
         message_parts = message_string.split("|")
 
@@ -175,6 +246,7 @@ class Message:
         new_object = cls()
         new_object._parse(message_string)
 
+        new_object.validate_parameters()
         return new_object
 
     @classmethod
@@ -186,6 +258,7 @@ class Message:
         new_object._message_id = message_id
         new_object._parameters = parameters
 
+        new_object.validate_parameters()
         return new_object
 
     def to_string(self):
@@ -197,7 +270,9 @@ class Message:
 
         return message_to_send
 
-    def validate_parameters(self, expected_param_types):
+    def validate_parameters(self):
+        expected_param_types = self.__param_types[self._message_id]
+
         if len(self._parameters) != len(expected_param_types):
             msg = "Message did not have the correct number of parameters"
             msg += " (" + str(len(expected_param_types)) + ")"
@@ -287,12 +362,18 @@ class PTDMRequestClient:
         # Do exchange
         self.__zmq_socket.send_string(message.to_string())
         response_string = self.__zmq_socket.recv_string()
-        response_object = Message.from_string(response_string)
 
         # Close socket connection if 'with' syntax was not used
         if not initialised:
             self.__cleanup()
             unregister(self.__cleanup)
+
+        # Parse the response
+        response_object = Message.from_string(response_string)
+
+        # Check response matches initial message (original message value + 100)
+        if response_object.message_id() != message.message_id() + 100:
+            raise Exception("Invalid response from pt-device-manager")
 
         return response_object
 
@@ -349,7 +430,6 @@ class PTDMSubscribeClient:
 
                 id = message.message_id()
                 if id in self.__callback_funcs:
-                    message.validate_parameters(list())
                     self.invoke_callback_func_if_exists(
                         self.__callback_funcs[id],
                         message.parameters
