@@ -56,7 +56,7 @@ class Message:
     __param_types[REQ_PING] = list()
     __param_types[REQ_GET_DEVICE_ID] = list()
     __param_types[REQ_GET_BRIGHTNESS] = list()
-    __param_types[REQ_SET_BRIGHTNESS] = list()
+    __param_types[REQ_SET_BRIGHTNESS] = [int]
     __param_types[REQ_INCREMENT_BRIGHTNESS] = list()
     __param_types[REQ_DECREMENT_BRIGHTNESS] = list()
     __param_types[REQ_BLANK_SCREEN] = list()
@@ -64,12 +64,12 @@ class Message:
     __param_types[REQ_GET_BATTERY_STATE] = list()
     __param_types[REQ_GET_PERIPHERAL_ENABLED] = list()
     __param_types[REQ_GET_SCREEN_BLANKING_TIMEOUT] = list()
-    __param_types[REQ_SET_SCREEN_BLANKING_TIMEOUT] = list()
+    __param_types[REQ_SET_SCREEN_BLANKING_TIMEOUT] = [int]
     __param_types[REQ_GET_LID_OPEN_STATE] = list()
     __param_types[REQ_GET_SCREEN_BACKLIGHT_STATE] = list()
-    __param_types[REQ_SET_SCREEN_BACKLIGHT_STATE] = list()
+    __param_types[REQ_SET_SCREEN_BACKLIGHT_STATE] = [int]
     __param_types[REQ_GET_OLED_CONTROL] = list()
-    __param_types[REQ_SET_OLED_CONTROL] = list()
+    __param_types[REQ_SET_OLED_CONTROL] = [int]
 
     # Responses
     RSP_ERR_SERVER = 201
