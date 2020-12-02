@@ -118,21 +118,21 @@ class Message:
     __param_types[RSP_ERR_MALFORMED] = list()
     __param_types[RSP_ERR_UNSUPPORTED] = list()
     __param_types[RSP_PING] = list()
-    __param_types[RSP_GET_DEVICE_ID] = list(int)
-    __param_types[RSP_GET_BRIGHTNESS] = list(int)
+    __param_types[RSP_GET_DEVICE_ID] = [int]
+    __param_types[RSP_GET_BRIGHTNESS] = [int]
     __param_types[RSP_SET_BRIGHTNESS] = list()
     __param_types[RSP_INCREMENT_BRIGHTNESS] = list()
     __param_types[RSP_DECREMENT_BRIGHTNESS] = list()
     __param_types[RSP_BLANK_SCREEN] = list()
     __param_types[RSP_UNBLANK_SCREEN] = list()
-    __param_types[RSP_GET_BATTERY_STATE] = list(int, int, int, int)
-    __param_types[RSP_GET_PERIPHERAL_ENABLED] = list(int)
-    __param_types[RSP_GET_SCREEN_BLANKING_TIMEOUT] = list(int)
+    __param_types[RSP_GET_BATTERY_STATE] = [int, int, int, int]
+    __param_types[RSP_GET_PERIPHERAL_ENABLED] = [int]
+    __param_types[RSP_GET_SCREEN_BLANKING_TIMEOUT] = [int]
     __param_types[RSP_SET_SCREEN_BLANKING_TIMEOUT] = list()
     __param_types[RSP_GET_LID_OPEN_STATE] = list()
     __param_types[RSP_GET_SCREEN_BACKLIGHT_STATE] = list()
     __param_types[RSP_SET_SCREEN_BACKLIGHT_STATE] = list()
-    __param_types[RSP_GET_OLED_CONTROL] = list(int)
+    __param_types[RSP_GET_OLED_CONTROL] = [int]
     __param_types[RSP_SET_OLED_CONTROL] = list()
 
     # Broadcast/published messages
@@ -198,12 +198,12 @@ class Message:
     __message_names[PUB_EXTERNAL_DISPLAY_CONNECTED] = "PUB_EXTERNAL_DISPLAY_CONNECTED"
     __message_names[PUB_EXTERNAL_DISPLAY_DISCONNECTED] = "PUB_EXTERNAL_DISPLAY_DISCONNECTED"
 
-    __param_types[PUB_BRIGHTNESS_CHANGED] = list(int)
-    __param_types[PUB_PERIPHERAL_CONNECTED] = list(int)
-    __param_types[PUB_PERIPHERAL_DISCONNECTED] = list(int)
+    __param_types[PUB_BRIGHTNESS_CHANGED] = [int]
+    __param_types[PUB_PERIPHERAL_CONNECTED] = [int]
+    __param_types[PUB_PERIPHERAL_DISCONNECTED] = [int]
     __param_types[PUB_SHUTDOWN_REQUESTED] = list()
     __param_types[PUB_REBOOT_REQUIRED] = list()
-    __param_types[PUB_BATTERY_STATE_CHANGED] = list(int, int, int, int)
+    __param_types[PUB_BATTERY_STATE_CHANGED] = [int, int, int, int]
     __param_types[PUB_SCREEN_BLANKED] = list()
     __param_types[PUB_SCREEN_UNBLANKED] = list()
     __param_types[PUB_LOW_BATTERY_WARNING] = list()
