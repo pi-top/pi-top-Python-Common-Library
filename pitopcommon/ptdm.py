@@ -435,7 +435,7 @@ class PTDMSubscribeClient:
                         message.parameters
                     )
 
-    def invoke_callback_func_if_exists(func, params=list()):
+    def invoke_callback_func_if_exists(self, func, params=list()):
         if func is None:
             return
 
