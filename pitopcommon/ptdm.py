@@ -371,8 +371,8 @@ class PTDMRequestClient:
         # Parse the response
         response_object = Message.from_string(response_string)
 
-        if response_object.message_id() == Message.RSP_ERR_SERVER:
-            raise Exception("pt-device-manager reported an error (RSP_ERR_SERVER)")
+        if response_object.message_id() in [Message.RSP_ERR_SERVER, Message.RSP_ERR_MALFORMED, Message.RSP_ERR_UNSUPPORTED]:
+            raise Exception(f"pt-device-manager reported an error ({response_object.to_string()})")
 
         # Check response matches initial message (original message value + 100)
         if response_object.message_id() != message.message_id() + 100:
