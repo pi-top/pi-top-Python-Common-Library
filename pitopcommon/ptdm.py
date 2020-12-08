@@ -62,7 +62,7 @@ class Message:
     __param_types[REQ_BLANK_SCREEN] = list()
     __param_types[REQ_UNBLANK_SCREEN] = list()
     __param_types[REQ_GET_BATTERY_STATE] = list()
-    __param_types[REQ_GET_PERIPHERAL_ENABLED] = list()
+    __param_types[REQ_GET_PERIPHERAL_ENABLED] = [int]
     __param_types[REQ_GET_SCREEN_BLANKING_TIMEOUT] = list()
     __param_types[REQ_SET_SCREEN_BLANKING_TIMEOUT] = [int]
     __param_types[REQ_GET_LID_OPEN_STATE] = list()
