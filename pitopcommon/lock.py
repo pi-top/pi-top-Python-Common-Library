@@ -4,7 +4,11 @@ from os import (
     remove,
 )
 from os.path import exists
-from stat import S_IWUSR, S_IWGRP, S_IWOTH
+from stat import (
+    S_IWUSR,
+    S_IWGRP,
+    S_IWOTH,
+)
 from threading import Lock
 
 from pitopcommon.logger import PTLogger
@@ -14,10 +18,12 @@ class PTLock(object):
     __lock_file_handle = None
     __locked_by_self = False
 
-    def __init__(self, id):
+    # _single_purpose is only intended to be used by pt-sys-oled
+    def __init__(self, id, _single_purpose=False):
         self.path = "/tmp/%s.lock" % id
 
         self._thread_lock = Lock()
+        self._single_purpose = _single_purpose
 
         lock_file_already_existed = exists(self.path)
         self.__lock_file_handle = open(self.path, "w")
@@ -82,5 +88,6 @@ class PTLock(object):
         if self.__lock_file_handle:
             self.__lock_file_handle.close()
 
-        if exists(self.path):
+        # Clean up single-purpose lock files
+        if self.single_purpose and exists(self.path):
             remove(self.path)
