@@ -1,5 +1,8 @@
 from fcntl import flock, LOCK_EX, LOCK_NB, LOCK_UN
-from os import chmod
+from os import (
+    chmod,
+    remove,
+)
 from os.path import exists
 from stat import S_IWUSR, S_IWGRP, S_IWOTH
 from threading import Lock
@@ -78,3 +81,6 @@ class PTLock(object):
     def __del__(self):
         if self.__lock_file_handle:
             self.__lock_file_handle.close()
+
+        if exists(self.path):
+            remove(self.path)
