@@ -89,5 +89,5 @@ class PTLock(object):
             self.__lock_file_handle.close()
 
         # Clean up single-purpose lock files
-        if self.single_purpose and exists(self.path):
+        if self._single_purpose and exists(self.path):
             remove(self.path)
