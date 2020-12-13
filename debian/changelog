@@ -1,3 +1,12 @@
+py-pitop-common (0.2.0) buster; urgency=medium
+
+  * Recommends pt-notifications
+  * Overhaul device manager messaging interface (ptdm) - includes automatic
+  validation
+  * Remove sys_config
+
+ -- Mike Roberts <mike@pi-top.com>  Sun, 13 Dec 2020 20:37:41 +0000
+
 py-pitop-common (0.1.0) buster; urgency=medium
 
   * Initial release of package
