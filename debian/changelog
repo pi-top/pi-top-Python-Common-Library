@@ -1,3 +1,9 @@
+py-pitop-common (0.3.0) buster; urgency=medium
+
+  * Control output of command runner functions
+
+ -- Jorge Capona <jorge@pi-top.com>  Mon, 14 Dec 2020 11:01:01 -0300
+
 py-pitop-common (0.2.0) buster; urgency=medium
 
   * Recommends pt-notifications

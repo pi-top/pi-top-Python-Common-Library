@@ -1,6 +1,13 @@
 from os import environ
 from shlex import split
-from subprocess import run, Popen, CalledProcessError, TimeoutExpired
+from subprocess import (
+    run,
+    Popen,
+    CalledProcessError,
+    TimeoutExpired,
+    DEVNULL,
+    PIPE,
+)
 
 from pitopcommon.logger import PTLogger
 from pitopcommon.current_session_info import get_first_display
@@ -14,14 +21,20 @@ def __get_env():
     return env_plus_display
 
 
-def run_command_background(command_str: str) -> Popen:
-    PTLogger.info(
+def run_command_background(command_str: str, print_output=False) -> Popen:
+    PTLogger.debug(
         "Function: run_command_background(command_str=%s)" % command_str)
-    return Popen(split(command_str), env=__get_env())
+
+    return Popen(split(command_str),
+                 env=__get_env(),
+                 stderr=PIPE if print_output else DEVNULL,
+                 stdout=PIPE if print_output else DEVNULL)
 
 
-def run_command(command_str: str, timeout: int, check: bool = True, capture_output: bool = True) -> str:
-    PTLogger.debug(f"Function: run_command(command_str={command_str}, timeout={timeout}, check={check}, capture_output={capture_output})")
+def run_command(command_str: str, timeout: int, check: bool = True, capture_output: bool = True, log_errors: bool = True) -> str:
+    PTLogger.debug(
+        f"Function: run_command(command_str={command_str}, timeout={timeout}, check={check}, capture_output={capture_output}, \
+         log_errors={log_errors})")
 
     resp_stdout = None
 
@@ -66,9 +79,11 @@ def run_command(command_str: str, timeout: int, check: bool = True, capture_outp
             )
 
     except (CalledProcessError, TimeoutExpired) as e:
-        PTLogger.error(str(e))
+        if log_errors:
+            PTLogger.error(str(e))
         raise e
     except Exception as e:
-        PTLogger.error(str(e))
+        if log_errors:
+            PTLogger.error(str(e))
 
     return resp_stdout
