@@ -19,6 +19,7 @@ class LoggerSingleton:
         self._logging_level = 20
         self._log_to_journal = False
         self._journal_log = None
+        self.journal_funcs = None
         self.setup_logging(logger_name="PTLogger")
 
     def get_instance(self):
@@ -41,16 +42,15 @@ class LoggerSingleton:
     def __instancecheck__(self, inst):
         return isinstance(inst, self._decorated)
 
-    def _print_message(self, message, level):
-        if self._log_to_journal is False and self._logging_level <= level:
-            print(
-                "["
-                + datetime.now().strftime("%H:%M:%S.%f")
-                + " "
-                + self.log_level_indicators[level]
-                + "] "
-                + message
-            )
+    def __print_message(self, message, level):
+        print(
+            "["
+            + datetime.now().strftime("%H:%M:%S.%f")
+            + " "
+            + self.log_level_indicators[level]
+            + "] "
+            + message
+        )
 
     def setup_logging(
         self, logger_name="PTLogger", logging_level=20, log_to_journal=False
@@ -59,6 +59,12 @@ class LoggerSingleton:
         self._log_to_journal = log_to_journal
 
         self._journal_log = logging.getLogger(logger_name)
+        self.journal_funcs = {
+            logging.DEBUG: self._journal_log.debug,
+            logging.INFO: self._journal_log.info,
+            logging.WARNING: self._journal_log.warning,
+            logging.ERROR: self._journal_log.error,
+        }
 
         if (
             systemd_journal_available is True
@@ -71,22 +77,37 @@ class LoggerSingleton:
         self._journal_log.setLevel(self._logging_level)
         self._journal_log.info("Logger created.")
 
-    def log_print(self, message: str, log_level: int, print_method):
-        self._print_message(message, log_level)
-        if self._log_to_journal is True:
-            print_method(message)
+    def __get_journal_print_func_from_log_level(self, log_level: int):
+        if log_level not in self.journal_funcs:
+            # Internal error
+            print("Invalid log level - skipping log")
+            return None
+
+        return self.journal_funcs[log_level]
+
+    def __log_print(self, message: str, log_level: int):
+        if self._log_to_journal:
+            # Journal print
+            func = self.__get_journal_print_func_from_log_level(log_level)
+            if func is None:
+                return
+            func(message)
+
+        # stdout print
+        if self._logging_level <= log_level:
+            self.__print_message(message, log_level)
 
     def debug(self, message):
-        self.log_print(message, logging.DEBUG, self._journal_log.debug)
+        self.__log_print(message, logging.DEBUG)
 
     def info(self, message):
-        self.log_print(message, logging.INFO, self._journal_log.info)
+        self.__log_print(message, logging.INFO)
 
     def warning(self, message):
-        self.log_print(message, logging.WARNING, self._journal_log.warning)
+        self.__log_print(message, logging.WARNING)
 
     def error(self, message):
-        self.log_print(message, logging.ERROR, self._journal_log.error)
+        self.__log_print(message, logging.ERROR)
 
 
 @LoggerSingleton
