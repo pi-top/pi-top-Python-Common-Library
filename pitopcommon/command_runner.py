@@ -6,7 +6,6 @@ from subprocess import (
     CalledProcessError,
     TimeoutExpired,
     DEVNULL,
-    PIPE,
 )
 
 from pitopcommon.logger import PTLogger
@@ -27,8 +26,8 @@ def run_command_background(command_str: str, print_output=False) -> Popen:
 
     return Popen(split(command_str),
                  env=__get_env(),
-                 stderr=PIPE if print_output else DEVNULL,
-                 stdout=PIPE if print_output else DEVNULL)
+                 stderr=None if print_output else DEVNULL,
+                 stdout=None if print_output else DEVNULL)
 
 
 def run_command(command_str: str, timeout: int, check: bool = True, capture_output: bool = True, log_errors: bool = True) -> str:

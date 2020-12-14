@@ -1,3 +1,9 @@
+py-pitop-common (0.3.1) buster; urgency=medium
+
+  * Fix function to run commands in the background
+
+ -- Jorge Capona <jorge@pi-top.com>  Mon, 14 Dec 2020 13:17:21 -0300
+
 py-pitop-common (0.3.0) buster; urgency=medium
 
   * Control output of command runner functions
