@@ -25,11 +25,11 @@ Recommends:
 # Required for 'pt-notify-send'
  pt-notifications,
 Provides:
- python3-pt-common (<< 3.0.0),
+ python3-pt-common,
 Conflicts:
- python3-pt-common (<< 3.0.0),
+ python3-pt-common,
 Breaks:
- python3-pt-common (<< 3.0.0),
+ python3-pt-common,
 Description: pi-top Python 3 Common Library
  Collection of common classes and modules used by pi-top software
  .
