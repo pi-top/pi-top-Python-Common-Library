@@ -1,3 +1,9 @@
+py-pitop-common (0.3.5) buster; urgency=medium
+
+  * Provide, don't break
+
+ -- Mike Roberts <mike@pi-top.com>  Tue, 15 Dec 2020 00:49:49 +0000
+
 py-pitop-common (0.3.4) buster; urgency=medium
 
   * Fix breaking legacy common lib package

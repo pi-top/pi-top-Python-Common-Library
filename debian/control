@@ -28,7 +28,7 @@ Provides:
  python3-pt-common,
 Conflicts:
  python3-pt-common,
-Breaks:
+Replaces:
  python3-pt-common,
 Description: pi-top Python 3 Common Library
  Collection of common classes and modules used by pi-top software
