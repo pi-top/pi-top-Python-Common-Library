@@ -129,8 +129,8 @@ class Message:
     __param_types[RSP_GET_PERIPHERAL_ENABLED] = [int]
     __param_types[RSP_GET_SCREEN_BLANKING_TIMEOUT] = [int]
     __param_types[RSP_SET_SCREEN_BLANKING_TIMEOUT] = list()
-    __param_types[RSP_GET_LID_OPEN_STATE] = list()
-    __param_types[RSP_GET_SCREEN_BACKLIGHT_STATE] = list()
+    __param_types[RSP_GET_LID_OPEN_STATE] = [int]
+    __param_types[RSP_GET_SCREEN_BACKLIGHT_STATE] = [int]
     __param_types[RSP_SET_SCREEN_BACKLIGHT_STATE] = list()
     __param_types[RSP_GET_OLED_CONTROL] = [int]
     __param_types[RSP_SET_OLED_CONTROL] = list()
@@ -374,7 +374,7 @@ class PTDMRequestClient:
         if response_object.message_id() in [Message.RSP_ERR_SERVER,
                                             Message.RSP_ERR_MALFORMED,
                                             Message.RSP_ERR_UNSUPPORTED]:
-            raise Exception(f"pt-device-manager reported an error ({response_object.to_string()})")
+            raise Exception(f"pt-device-manager reported an error ({response_object.message_friendly_string()})")
 
         # Check response matches initial message (original message value + 100)
         if response_object.message_id() != message.message_id() + 100:
