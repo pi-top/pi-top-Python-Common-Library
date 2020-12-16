@@ -1,3 +1,11 @@
+py-pitop-common (0.4.0) buster; urgency=medium
+
+  * Fix ptdm screen blanking request IDs
+  * Fix validation of lid and backlight states
+  * Use message ID names not numbers on ptdm request client errors
+
+ -- Mike Roberts <mike@pi-top.com>  Wed, 16 Dec 2020 13:57:32 +0000
+
 py-pitop-common (0.3.5) buster; urgency=medium
 
   * Provide, don't break
