@@ -81,8 +81,8 @@ class Message:
     RSP_SET_BRIGHTNESS = 213
     RSP_INCREMENT_BRIGHTNESS = 214
     RSP_DECREMENT_BRIGHTNESS = 215
-    RSP_BLANK_SCREEN = 116
-    RSP_UNBLANK_SCREEN = 117
+    RSP_BLANK_SCREEN = 216
+    RSP_UNBLANK_SCREEN = 217
     RSP_GET_BATTERY_STATE = 218
     RSP_GET_PERIPHERAL_ENABLED = 219
     RSP_GET_SCREEN_BLANKING_TIMEOUT = 220
@@ -291,6 +291,10 @@ class Message:
 
         return True
 
+    @staticmethod
+    def name_for_id(message_id):
+        return Message.__message_names[message_id]
+
     def message_id(self):
         return self._message_id
 
@@ -374,14 +378,15 @@ class PTDMRequestClient:
         if response_object.message_id() in [Message.RSP_ERR_SERVER,
                                             Message.RSP_ERR_MALFORMED,
                                             Message.RSP_ERR_UNSUPPORTED]:
-            raise Exception(f"pt-device-manager reported an error ({response_object.message_friendly_string()})")
+            raise Exception(f"pt-device-manager reported an error ({response_object.message_id_name()})")
 
         # Check response matches initial message (original message value + 100)
-        if response_object.message_id() != message.message_id() + 100:
+        expected_message_id = message.message_id() + 100
+        if response_object.message_id() != expected_message_id:
             raise Exception(
                 "Invalid response from pt-device-manager. "
-                f"Expected: {message.message_id() + 100}, "
-                f"Actual: {response_object.message_id()}"
+                f"Expected: {Message.name_for_id(expected_message_id)}, "
+                f"Actual: {response_object.message_id_name()}"
             )
 
         return response_object
