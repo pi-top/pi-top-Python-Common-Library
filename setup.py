@@ -58,7 +58,7 @@ project = "pi-top Python Common Library"
 __author__ = "pi-top"
 __author_email__ = "deb-maintainers@pi-top.com"
 
-__url__ = "https://github.com/pi-top/pitopcommon"
+__url__ = "https://github.com/pi-top/pi-top-Python-Common-Library"
 __platforms__ = "ALL"
 
 # https://pypi.org/classifiers/
