@@ -1,3 +1,9 @@
+py-pitop-common (0.6.0) buster; urgency=medium
+
+  * Use ping & arping to find connected USB device IP
+
+ -- Jorge Capona <jorge@pi-top.com>  Mon, 28 Dec 2020 16:12:11 -0300
+
 py-pitop-common (0.5.0) buster; urgency=medium
 
   * Remove python3-ptcommon provide/conflict/replace dependencies

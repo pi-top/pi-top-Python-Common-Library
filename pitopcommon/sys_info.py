@@ -5,7 +5,6 @@ from os import path
 from fractions import Fraction
 from isc_dhcp_leases import IscDhcpLeases
 
-from pitopcommon.logger import PTLogger
 from pitopcommon.command_runner import run_command
 
 
@@ -132,17 +131,20 @@ def interface_is_up(interface_name):
 
 
 def get_address_for_ptusb_connected_device():
+    def command_succeeds(cmd, timeout):
+        try:
+            run_command(cmd, timeout=timeout, check=True, log_errors=False)
+            return True
+        except Exception:
+            return False
+
     if interface_is_up("ptusb0"):
-        for lease in IscDhcpLeases(
-                '/var/lib/dhcp/dhcpd.leases').get_current().values():
-            try:
-                run_command("ping -c1 {}".format(lease.ip),
-                            timeout=0.1, check=True)
-                PTLogger.debug(
-                    "Leased IP address {} is connected.".format(lease.ip))
+        current_leases = IscDhcpLeases('/var/lib/dhcp/dhcpd.leases').get_current().values()
+        current_leases = list(current_leases)
+        current_leases.reverse()
+
+        for lease in current_leases:
+            if (command_succeeds(f"ping -c1 {lease.ip}", 0.1) or
+                    command_succeeds(f"arping -c1 {lease.ip}", 2)):
                 return lease.ip
-            except Exception:
-                PTLogger.debug(
-                    "Leased IP address {} is not connected.".format(lease.ip))
-                continue
     return ""
