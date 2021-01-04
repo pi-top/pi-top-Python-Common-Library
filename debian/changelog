@@ -1,6 +1,7 @@
 py-pitop-common (0.6.1) buster; urgency=medium
 
   * Make I2C device's raw read function semi-private
+  * Add comments to sys_conf & control file
 
  -- Mike Roberts <mike@pi-top.com>  Mon, 04 Jan 2021 12:06:10 +0000
 

@@ -144,6 +144,8 @@ def get_address_for_ptusb_connected_device():
         current_leases.reverse()
 
         for lease in current_leases:
+            # Windows machines won't respond to ping requests by default. Using arping
+            # helps us on that case, but since it takes ~1.5s, it's used as a fallback
             if (command_succeeds(f"ping -c1 {lease.ip}", 0.1) or
                     command_succeeds(f"arping -c1 {lease.ip}", 2)):
                 return lease.ip
