@@ -182,14 +182,16 @@ class I2CDevice:
     def __run_transaction(self, listin: list, expected_read_length: int):
         with self._lock:
             self.__write_data(bytearray(listin))
-            return self.__read_data(expected_read_length)
+            return self._read_data(expected_read_length)
 
     def __write_data(self, data: bytearray):
         data = bytes(data)
         self._write_device.write(data)
         sleep(self._post_write_delay)
 
-    def __read_data(self, expected_output_size: int):
+    # Used directly by proto+ in Python SDK
+    # TODO: use 2 underscores when proto+ uses a proper public method
+    def _read_data(self, expected_output_size: int):
         if expected_output_size == 0:
             return 0
 
