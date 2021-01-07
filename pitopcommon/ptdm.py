@@ -34,6 +34,8 @@ class Message:
     REQ_SET_SCREEN_BACKLIGHT_STATE = 124
     REQ_GET_OLED_CONTROL = 125
     REQ_SET_OLED_CONTROL = 126
+    REQ_GET_OLED_SPI_BUS = 127
+    REQ_SET_OLED_SPI_BUS = 128
 
     __message_names[REQ_PING] = "REQ_PING"
     __message_names[REQ_GET_DEVICE_ID] = "REQ_GET_DEVICE_ID"
@@ -52,6 +54,8 @@ class Message:
     __message_names[REQ_SET_SCREEN_BACKLIGHT_STATE] = "REQ_SET_SCREEN_BACKLIGHT_STATE"
     __message_names[REQ_GET_OLED_CONTROL] = "REQ_GET_OLED_CONTROL"
     __message_names[REQ_SET_OLED_CONTROL] = "REQ_SET_OLED_CONTROL"
+    __message_names[REQ_GET_OLED_SPI_BUS] = "REQ_GET_OLED_SPI_BUS"
+    __message_names[REQ_SET_OLED_SPI_BUS] = "REQ_SET_OLED_SPI_BUS"
 
     __param_types[REQ_PING] = list()
     __param_types[REQ_GET_DEVICE_ID] = list()
@@ -70,6 +74,8 @@ class Message:
     __param_types[REQ_SET_SCREEN_BACKLIGHT_STATE] = [int]
     __param_types[REQ_GET_OLED_CONTROL] = list()
     __param_types[REQ_SET_OLED_CONTROL] = [int]
+    __param_types[REQ_GET_OLED_SPI_BUS] = list()
+    __param_types[REQ_SET_OLED_SPI_BUS] = [int]
 
     # Responses
     RSP_ERR_SERVER = 201
@@ -92,6 +98,8 @@ class Message:
     RSP_SET_SCREEN_BACKLIGHT_STATE = 224
     RSP_GET_OLED_CONTROL = 225
     RSP_SET_OLED_CONTROL = 226
+    RSP_GET_OLED_SPI_BUS = 227
+    RSP_SET_OLED_SPI_BUS = 228
 
     __message_names[RSP_ERR_SERVER] = "RSP_ERR_SERVER"
     __message_names[RSP_ERR_MALFORMED] = "RSP_ERR_MALFORMED"
@@ -113,6 +121,8 @@ class Message:
     __message_names[RSP_SET_SCREEN_BACKLIGHT_STATE] = "RSP_SET_SCREEN_BACKLIGHT_STATE"
     __message_names[RSP_GET_OLED_CONTROL] = "RSP_GET_OLED_CONTROL"
     __message_names[RSP_SET_OLED_CONTROL] = "RSP_SET_OLED_CONTROL"
+    __message_names[RSP_GET_OLED_SPI_BUS] = "RSP_GET_OLED_SPI_BUS"
+    __message_names[RSP_SET_OLED_SPI_BUS] = "RSP_SET_OLED_SPI_BUS"
 
     __param_types[RSP_ERR_SERVER] = list()
     __param_types[RSP_ERR_MALFORMED] = list()
@@ -134,6 +144,8 @@ class Message:
     __param_types[RSP_SET_SCREEN_BACKLIGHT_STATE] = list()
     __param_types[RSP_GET_OLED_CONTROL] = [int]
     __param_types[RSP_SET_OLED_CONTROL] = list()
+    __param_types[RSP_GET_OLED_SPI_BUS] = [int]
+    __param_types[RSP_SET_OLED_SPI_BUS] = list()
 
     # Broadcast/published messages
     PUB_BRIGHTNESS_CHANGED = 300
@@ -162,10 +174,7 @@ class Message:
     PUB_KEYBOARD_CONNECTED = 323
     PUB_FAILED_KEYBOARD_CONNECT = 324
     PUB_OLED_CONTROL_CHANGED = 325
-    PUB_NATIVE_DISPLAY_CONNECTED = 326
-    PUB_NATIVE_DISPLAY_DISCONNECTED = 327
-    PUB_EXTERNAL_DISPLAY_CONNECTED = 328
-    PUB_EXTERNAL_DISPLAY_DISCONNECTED = 329
+    PUB_OLED_SPI_BUS_CHANGED = 326
 
     __message_names[PUB_BRIGHTNESS_CHANGED] = "PUB_BRIGHTNESS_CHANGED"
     __message_names[PUB_PERIPHERAL_CONNECTED] = "PUB_PERIPHERAL_CONNECTED"
@@ -193,10 +202,7 @@ class Message:
     __message_names[PUB_KEYBOARD_CONNECTED] = "PUB_KEYBOARD_CONNECTED"
     __message_names[PUB_FAILED_KEYBOARD_CONNECT] = "PUB_FAILED_KEYBOARD_CONNECT"
     __message_names[PUB_OLED_CONTROL_CHANGED] = "PUB_OLED_CONTROL_CHANGED"
-    __message_names[PUB_NATIVE_DISPLAY_CONNECTED] = "PUB_NATIVE_DISPLAY_CONNECTED"
-    __message_names[PUB_NATIVE_DISPLAY_DISCONNECTED] = "PUB_NATIVE_DISPLAY_DISCONNECTED"
-    __message_names[PUB_EXTERNAL_DISPLAY_CONNECTED] = "PUB_EXTERNAL_DISPLAY_CONNECTED"
-    __message_names[PUB_EXTERNAL_DISPLAY_DISCONNECTED] = "PUB_EXTERNAL_DISPLAY_DISCONNECTED"
+    __message_names[PUB_OLED_SPI_BUS_CHANGED] = "PUB_OLED_SPI_BUS_CHANGED"
 
     __param_types[PUB_BRIGHTNESS_CHANGED] = [int]
     __param_types[PUB_PERIPHERAL_CONNECTED] = [int]
@@ -223,11 +229,8 @@ class Message:
     __param_types[PUB_KEYBOARD_UNDOCKED] = list()
     __param_types[PUB_KEYBOARD_CONNECTED] = list()
     __param_types[PUB_FAILED_KEYBOARD_CONNECT] = list()
-    __param_types[PUB_OLED_CONTROL_CHANGED] = list()
-    __param_types[PUB_NATIVE_DISPLAY_CONNECTED] = list()
-    __param_types[PUB_NATIVE_DISPLAY_DISCONNECTED] = list()
-    __param_types[PUB_EXTERNAL_DISPLAY_CONNECTED] = list()
-    __param_types[PUB_EXTERNAL_DISPLAY_DISCONNECTED] = list()
+    __param_types[PUB_OLED_CONTROL_CHANGED] = [int]
+    __param_types[PUB_OLED_SPI_BUS_CHANGED] = [int]
 
     def _parse(self, message_string):
         message_parts = message_string.split("|")
