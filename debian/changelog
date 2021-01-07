@@ -1,3 +1,9 @@
+py-pitop-common (0.6.2) buster; urgency=medium
+
+  * Add support for OLED SPI bus ptdm messages
+
+ -- Mike Roberts <mike@pi-top.com>  Thu, 07 Jan 2021 16:07:59 +0000
+
 py-pitop-common (0.6.1) buster; urgency=medium
 
   * Make I2C device's raw read function semi-private
