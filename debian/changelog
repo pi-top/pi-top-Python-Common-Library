@@ -1,3 +1,9 @@
+py-pitop-common (0.7.1) buster; urgency=medium
+
+  * Set PDTM Message parameters as property
+
+ -- Jorge Capona <jorge@pi-top.com>  Thu, 07 Jan 2021 15:33:04 -0300
+
 py-pitop-common (0.7.0) buster; urgency=medium
 
   * Fix ptdm callback arguments (breaking change)

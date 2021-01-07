@@ -313,6 +313,7 @@ class Message:
 
         return result
 
+    @property
     def parameters(self):
         return self._parameters
 
@@ -449,7 +450,7 @@ class PTDMSubscribeClient:
                 if id in self.__callback_funcs:
                     self.invoke_callback_func_if_exists(
                         self.__callback_funcs[id],
-                        message.parameters()
+                        message.parameters
                     )
 
     def invoke_callback_func_if_exists(self, func, params=list()):
