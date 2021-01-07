@@ -449,11 +449,11 @@ class PTDMSubscribeClient:
                 if id in self.__callback_funcs:
                     self.invoke_callback_func_if_exists(
                         self.__callback_funcs[id],
-                        message.parameters
+                        message.parameters()
                     )
 
     def invoke_callback_func_if_exists(self, func, params=list()):
-        if func is None:
+        if not callable(func):
             return
 
         func_arg_no = len(signature(func).parameters)
