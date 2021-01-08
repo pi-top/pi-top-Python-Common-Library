@@ -11,6 +11,9 @@ from atexit import (
 )
 
 
+__TIMEOUT_MS = 1000
+
+
 # Messages sent to/from pt-device-manager clients
 class Message:
     __message_names = dict()
@@ -333,8 +336,8 @@ class PTDMRequestClient:
     def __connect_to_socket(self):
         self.__zmq_context = zmq.Context()
         self.__zmq_socket = self.__zmq_context.socket(zmq.REQ)
-        self.__zmq_socket.sndtimeo = 1000
-        self.__zmq_socket.rcvtimeo = 1000
+        self.__zmq_socket.sndtimeo = __TIMEOUT_MS
+        self.__zmq_socket.rcvtimeo = __TIMEOUT_MS
 
         try:
             self.__zmq_socket.connect("tcp://127.0.0.1:3782")
@@ -440,7 +443,7 @@ class PTDMSubscribeClient:
         poller = zmq.Poller()
         poller.register(self.__zmq_socket, zmq.POLLIN)
         while self.__continue:
-            events = poller.poll(500)
+            events = poller.poll(__TIMEOUT_MS)
 
             for i in range(len(events)):
                 message_string = self.__zmq_socket.recv_string()
