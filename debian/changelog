@@ -1,3 +1,9 @@
+py-pitop-common (0.7.3) buster; urgency=medium
+
+  * Fix variable scope
+
+ -- Mike Roberts <mike@pi-top.com>  Mon, 11 Jan 2021 13:04:01 +0000
+
 py-pitop-common (0.7.2) buster; urgency=medium
 
   * Standardise PDTM timeouts to 1s
