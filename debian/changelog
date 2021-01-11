@@ -1,3 +1,9 @@
+py-pitop-common (0.7.2) buster; urgency=medium
+
+  * Standardise PDTM timeouts to 1s
+
+ -- Mike Roberts <mike@pi-top.com>  Mon, 11 Jan 2021 12:52:06 +0000
+
 py-pitop-common (0.7.1) buster; urgency=medium
 
   * Set PDTM Message parameters as property
