@@ -1,3 +1,9 @@
+py-pitop-common (0.8.0) buster; urgency=medium
+
+  * Convert Singleton from decorator to metaclass
+
+ -- Mike Roberts <mike@pi-top.com>  Thu, 14 Jan 2021 13:29:31 +0000
+
 py-pitop-common (0.7.3) buster; urgency=medium
 
   * Fix variable scope
