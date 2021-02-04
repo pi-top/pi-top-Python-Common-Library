@@ -11,8 +11,8 @@ class PeripheralName(Enum):
     unknown = "Unknown"
     pi_top_pulse = "pi-topPULSE"
     pi_top_speaker_l = "pi-topSPEAKER (v1) - Left channel"
-    pi_top_speaker_m = "pi-topSPEAKER (v1) - Right channel"
-    pi_top_speaker_r = "pi-topSPEAKER (v1) - Mono"
+    pi_top_speaker_r = "pi-topSPEAKER (v1) - Right channel"
+    pi_top_speaker_m = "pi-topSPEAKER (v1) - Mono"
     pi_top_speaker_v2 = "pi-topSPEAKER (v2)"
     pi_top_proto_plus = "pi-topPROTO+"
 
