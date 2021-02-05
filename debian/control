@@ -25,6 +25,8 @@ Depends:
 # 'ping' command
  iputils-ping,
  raspi-config,
+# ZMQ for messaging
+ python3-zmq,
 Recommends:
 # Required for 'pt-notify-send'
  pt-notifications,
