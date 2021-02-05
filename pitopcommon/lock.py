@@ -1,8 +1,5 @@
 from fcntl import flock, LOCK_EX, LOCK_NB, LOCK_UN
-from os import (
-    chmod,
-    remove,
-)
+from os import chmod
 from os.path import exists
 from stat import (
     S_IWUSR,
@@ -18,12 +15,10 @@ class PTLock(object):
     __lock_file_handle = None
     __locked_by_self = False
 
-    # _single_purpose is only intended to be used by pt-sys-oled
-    def __init__(self, id, _single_purpose=False):
+    def __init__(self, id):
         self.path = "/tmp/%s.lock" % id
 
         self._thread_lock = Lock()
-        self._single_purpose = _single_purpose
 
         lock_file_already_existed = exists(self.path)
         self.__lock_file_handle = open(self.path, "w")
@@ -87,7 +82,3 @@ class PTLock(object):
     def __del__(self):
         if self.__lock_file_handle:
             self.__lock_file_handle.close()
-
-        # Clean up single-purpose lock files
-        if self._single_purpose and exists(self.path):
-            remove(self.path)
