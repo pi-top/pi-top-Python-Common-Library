@@ -1,3 +1,20 @@
+py-pitop-common (0.8.1) buster; urgency=medium
+
+  [ cbajumpa ]
+  * Use the enum names in self.compatible_ids in common_ids.py (#19)
+  * Use the correct names for pi_top_speaker_{r,m}. (#20)
+
+  [ Mike Roberts ]
+  * Add ZMQ dependency
+  * Drop unused lock file workaround (#22)
+  * Add source override for standards version 4.5.0
+  * Architecture: any --> all
+  * Update workflow files - use latest from SDK
+  * Fix workflow
+  * Remove unnecessary steps in workflow
+
+ -- pi-top <deb-maintainers@pi-top.com>  Thu, 18 Feb 2021 12:22:35 +0000
+
 py-pitop-common (0.8.0) buster; urgency=medium
 
   * Convert Singleton from decorator to metaclass
